@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irishguider — Explore Ireland Your Way</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #1a4d38;
+            --green-mid: #2f6f57;
+            --green-light: #e8f1ed;
+            --gold: #c8891f;
+            --gold-light: #f0c96b;
+            --cream: #faf8f3;
+            --text: #1c1c1c;
+            --text-muted: #6b6b6b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 48px;
+            background: rgba(26, 77, 56, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--gold-light); }
+
+        nav { display: flex; gap: 6px; }
+
+        nav a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.75);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 100px;
+            transition: all 0.25s;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(10,30,20,0.55) 0%, rgba(10,30,20,0.3) 50%, rgba(10,30,20,0.7) 100%),
+                url("bridge.png") center/cover no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(200, 137, 31, 0.25);
+            border: 1px solid rgba(200, 137, 31, 0.5);
+            color: var(--gold-light);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 7px 18px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.78);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 16px 36px;
+            border-radius: 100px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-cta:hover {
+            background: #a87016;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(200,137,31,0.35);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-scroll::after {
+            content: '';
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.3);
+            animation: scrollLine 1.8s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(1); opacity: 0.4; }
+            50% { transform: scaleY(0.5); opacity: 1; }
+        }
+
+        /* ── SECTION COMMON ── */
+        section { padding: 100px 48px; }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            color: var(--green);
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 60px;
+        }
+
+        /* ── DESTINATIONS ── */
+        #destinations {
+            background: #fff;
+        }
+
+        .dest-header {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dest-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dest-card:nth-child(2) { margin-top: 40px; }
+        .dest-card:nth-child(4) { margin-top: 40px; }
+
+        .dest-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25,0,0,1);
+        }
+
+        .dest-card:hover img { transform: scale(1.08); }
+
+        .dest-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,30,20,0.85) 0%, transparent 55%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px;
+        }
+
+        .dest-card-tag {
+            display: inline-block;
+            background: rgba(200,137,31,0.9);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 100px;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+
+        .dest-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .dest-card p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.5;
+        }
+
+        .dest-arrow {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.3s;
+        }
+
+        .dest-card:hover .dest-arrow {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── SERVICES ── */
+        #services {
+            background: var(--green);
+            color: #fff;
+        }
+
+        #services .section-title { color: #fff; }
+        #services .section-label { color: var(--gold-light); }
+        #services .section-sub { color: rgba(255,255,255,0.6); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .service-item {
+            background: rgba(255,255,255,0.04);
+            padding: 48px 40px;
+            transition: background 0.3s;
+        }
+
+        .service-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(200,137,31,0.2);
+            border: 1px solid rgba(200,137,31,0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 24px;
+        }
+
+        .service-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        .service-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .service-item p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        /* ── TRIP PLAN BANNER ── */
+        .trip-banner {
+            background: var(--cream);
+            padding: 100px 48px;
+        }
+
+        .trip-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .trip-visual {
+            position: relative;
+            height: 480px;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .trip-visual-bg {
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(135deg, rgba(26,77,56,0.9), rgba(15,110,86,0.7)),
+                url("bridge.png") center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .trip-visual h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .trip-visual p {
+            color: rgba(255,255,255,0.7);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .trip-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .trip-text .section-sub { margin-bottom: 40px; }
+
+        .trip-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--green);
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 16px 36px;
+            border-radius: 100px;
+            transition: all 0.3s;
+        }
+
+        .trip-cta:hover {
+            background: var(--green-mid);
+            transform: translateY(-2px);
+        }
+
+        /* ── WHY CHOOSE US ── */
+        #why-choose {
+            background: var(--green-light);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-card {
+            background: #fff;
+            border: 1px solid rgba(47,111,87,0.14);
+            border-radius: 8px;
+            padding: 28px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 42px rgba(26,77,56,0.12);
+        }
+
+        .why-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .why-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--green);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .why-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* ── FAQs ── */
+        #faqs {
+            background: #fff;
+            padding: 100px 48px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 28px;
+            border: 1px solid rgba(47, 111, 87, 0.15);
+            border-left: 4px solid var(--gold);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .faq-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(47,111,87,0.12);
+            border-left-color: var(--green-mid);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .faq-mark {
+            flex: 0 0 auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--green-light);
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .faq-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            color: var(--green);
+            line-height: 1.25;
+        }
+
+        .faq-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+            padding-left: 44px;
+        }
+
+        /* ── USER AREA ── */
+        #login {
+            background: var(--green);
+            padding: 100px 48px;
+        }
+
+        #login .section-title { color: #fff; }
+        #login .section-label { color: var(--gold-light); }
+        #login .section-sub { color: rgba(255,255,255,0.6); }
+
+        .login-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .login-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .login-card:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(200,137,31,0.5);
+            transform: translateY(-4px);
+        }
+
+        .login-card-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.08);
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .login-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .login-card p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+        }
+
+
+        .logo {
+            text-decoration: none;
+        }
+
+        .service-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .service-link:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .inline-message {
+            display: none;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .inline-message.success {
+            background: #e8f1ed;
+            border: 1px solid rgba(47,111,87,0.3);
+            color: var(--green);
+        }
+
+        .inline-message.error {
+            background: #fff3e1;
+            border: 1px solid rgba(200,137,31,0.35);
+            color: #7a4a00;
+        }
+
+        .form-section {
+            background: #fff;
+            padding: 100px 48px;
+        }
+
+        .form-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .form-card,
+        .info-card,
+        .option-card,
+        .plan-card {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 16px 40px rgba(26,77,56,0.08);
+        }
+
+        .form-card h3,
+        .info-card h3,
+        .option-card h4,
+        .plan-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--green);
+            margin-bottom: 14px;
+        }
+
+        .form-card h3,
+        .info-card h3 {
+            font-size: 28px;
+        }
+
+        .option-card h4,
+        .plan-card h3 {
+            font-size: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--green);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 14px;
+            font-size: 14px;
+            font-family: 'DM Sans', sans-serif;
+            background: #fafafa;
+            color: var(--text);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-btn {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .form-btn:hover {
+            background: var(--green-mid);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            margin-top: 16px;
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .secondary-btn:hover {
+            background: #a87016;
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: var(--green);
+            border: 1px solid rgba(26,77,56,0.18);
+            border-radius: 100px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.25s;
+        }
+
+        .social-links a:hover {
+            background: var(--green-light);
+        }
+
+        .login-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .vip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .plan-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .plan-badge {
+            display: inline-block;
+            background: var(--green-light);
+            color: var(--green-mid);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+
+        .plan-card p,
+        .info-card p,
+        .option-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .plan-card ul {
+            padding-left: 18px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .weather-panel {
+            background: #fff;
+            padding: 100px 48px;
+        }
+
+        .weather-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .weather-card {
+            background: var(--green);
+            color: #fff;
+            border-radius: 8px;
+            padding: 36px;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-image: linear-gradient(135deg, rgba(26,77,56,0.96), rgba(47,111,87,0.82)), url("Glendalough Upper Lake.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .weather-result {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            line-height: 1.1;
+            margin-top: 24px;
+        }
+
+        .weather-small {
+            color: rgba(255,255,255,0.72);
+            line-height: 1.7;
+        }
+
+        .weather-tips {
+            display: grid;
+            gap: 16px;
+        }
+
+        .tip-card,
+        .review-card {
+            background: var(--green-light);
+            border: 1px solid rgba(47,111,87,0.14);
+            border-radius: 8px;
+            padding: 22px;
+        }
+
+        .tip-card h3,
+        .review-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .tip-card p,
+        .review-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .selected-plan {
+            display: none;
+            margin-top: 18px;
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .selected-plan:target,
+        .inline-message:target {
+            display: block;
+        }
+
+        .plan-card .form-btn {
+            margin-top: 8px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0d2a1e;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 36px 48px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .footer-logo span { color: var(--gold-light); }
+
+        footer a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover { color: var(--gold-light); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .dest-grid { grid-template-columns: repeat(2, 1fr); }
+            .dest-card:nth-child(2), .dest-card:nth-child(4) { margin-top: 0; }
+            .services-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .trip-inner { grid-template-columns: 1fr; }
+            .trip-visual { height: 320px; }
+            .login-grid { grid-template-columns: 1fr; }
+            .form-grid,
+            .login-options,
+            .vip-grid,
+            .weather-box,
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 14px 20px; }
+            nav { display: none; }
+            section { padding: 60px 20px; }
+            .form-section { padding: 60px 20px; }
+            .dest-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .trip-banner { padding: 60px 20px; }
+            footer { padding: 24px 20px; justify-content: center; }
+        }
+
+        /* ── ANIMATIONS ── */
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#home" class="logo">Irish<span>guider</span></a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#services">Services</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#login">Login</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Your Personal Ireland Guide</div>
+            <h1>Help you explore<br><em>your own Ireland</em></h1>
+            <p>Tailored to help you make your own travel plan that perfectly fits you. Cities, mountains, lakes, heritage — all in one place.</p>
+            <a href="#destinations" class="hero-cta">Explore Destinations →</a>
+        </div>
+        <div class="hero-scroll">Scroll</div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section id="destinations">
+        <div class="dest-header reveal">
+            <div class="section-label">Where to go</div>
+            <h2 class="section-title">Top Destinations</h2>
+            <p class="section-sub">From the lively streets of Dublin to the dramatic cliffs of the west coast — find your perfect Irish escape.</p>
+        </div>
+
+        <div class="dest-grid">
+            <a href="cities.html" class="dest-card reveal reveal-delay-1">
+                <img src="cities.png" alt="Cities in Ireland">
+                <div class="dest-card-overlay">
+                    <span class="dest-card-tag">Urban</span>
+                    <h3>Cities</h3>
+                    <p>Feel the pleasant city walk and enjoy time in Ireland's traditional pubs and lively streets.</p>
+                </div>
+                <div class="dest-arrow">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </a>
+
+            <a href="hills.html" class="dest-card reveal reveal-delay-2">
+                <img src="Carrick Island.png" alt="Mountains and Islands">
+                <div class="dest-card-overlay">
+                    <span class="dest-card-tag">Nature</span>
+                    <h3>Mountains & Islands</h3>
+                    <p>Get close to nature, enjoy peaceful views, and experience Ireland's fresh air and open landscapes.</p>
+                </div>
+                <div class="dest-arrow">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </a>
+
+            <a href="lakes.html" class="dest-card reveal reveal-delay-3">
+                <img src="Glendalough Upper Lake.png" alt="Irish Lakes">
+                <div class="dest-card-overlay">
+                    <span class="dest-card-tag">Scenic</span>
+                    <h3>Lakes</h3>
+                    <p>Beautiful lakes with creatures showing out in rippling water — a romantic atmosphere perfect for couples.</p>
+                </div>
+                <div class="dest-arrow">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </a>
+
+            <a href="heritage.html" class="dest-card reveal reveal-delay-4">
+                <img src="blarney.png" alt="Cultural Heritage">
+                <div class="dest-card-overlay">
+                    <span class="dest-card-tag">Culture</span>
+                    <h3>Cultural Heritage</h3>
+                    <p>Rich cultural heritage gives rise to a variety of cultural products — a delight for every enthusiast.</p>
+                </div>
+                <div class="dest-arrow">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why-choose">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">Why choose us</div>
+            <h2 class="section-title">Travel Planning That Feels Personal</h2>
+            <p class="section-sub">Irishguider keeps your trip simple, flexible, and easy to understand, especially if this is your first time planning an Ireland holiday.</p>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card reveal reveal-delay-1">
+                <div class="why-num">01</div>
+                <h3>Flexible Packages</h3>
+                <p>Start with a ready-made idea, then adjust the dates, pace, destinations, and budget before booking.</p>
+            </div>
+            <div class="why-card reveal reveal-delay-2">
+                <div class="why-num">02</div>
+                <h3>Helpful Planning</h3>
+                <p>Share your travel style and interests, and the plan can be shaped around what you actually want to do.</p>
+            </div>
+            <div class="why-card reveal reveal-delay-3">
+                <div class="why-num">03</div>
+                <h3>Weather Backup Ideas</h3>
+                <p>Ireland changes quickly, so plans include museums, cafes, castles, drives, and indoor stops for rainy days.</p>
+            </div>
+            <div class="why-card reveal reveal-delay-4">
+                <div class="why-num">04</div>
+                <h3>Beginner Friendly</h3>
+                <p>Clear forms, simple package pages, and direct contact options make the site easy for any visitor to use.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">What we offer</div>
+            <h2 class="section-title">Services We Have</h2>
+            <p class="section-sub">Everything you need to plan your perfect Irish adventure, from personalised itineraries to real-time weather and easy bookings.</p>
+        </div>
+
+        <div class="services-grid" style="max-width:1200px;margin:0 auto;">
+            <a href="planner.html" class="service-item service-link reveal reveal-delay-1">
+                <div class="service-icon">✦</div>
+                <img src="one on one service.png" alt="One on one service">
+                <h3>One-on-One Trip Planning</h3>
+                <p>Our assistant works with you personally to craft a travel plan that perfectly fits your interests, budget, and travel style. No two plans are the same.</p>
+            </a>
+
+            <a href="#weather-tool" class="service-item service-link reveal reveal-delay-2">
+                <div class="service-icon">◈</div>
+                <img src="weather.png" alt="Weather check">
+                <h3>Destination Weather Check</h3>
+                <p>Check the live weather of any destination in Ireland before you go. Plan around the forecast and make the most of every single day of your trip.</p>
+            </a>
+
+            <a href="#booking-form" class="service-item service-link reveal reveal-delay-3">
+                <div class="service-icon">◎</div>
+                <img src="political preparation.png" alt="Booking services">
+                <h3>Booking Services</h3>
+                <p>From accommodation to guided tours, we help you organise the details of your Ireland trip. Fill in your travel preferences and then continue to Skyscanner for flight booking.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- TRIP PLAN CTA -->
+    <div class="trip-banner">
+        <div class="trip-inner">
+            <div class="trip-visual reveal">
+                <div class="trip-visual-bg">
+                    <span class="trip-tag">AI-Powered Planning</span>
+                    <h3>Your unique travel plan awaits</h3>
+                    <p>Tell us who you are, what you love, and we'll build an itinerary made just for you.</p>
+                </div>
+            </div>
+            <div class="trip-text reveal reveal-delay-2">
+                <div class="section-label">Plan your trip</div>
+                <h2 class="section-title">Make Your Unique Travel Plan</h2>
+                <p class="section-sub">Do you want to organise a unique holiday? Our assistant can give you suggestions including destination details and booking options. We will do our best to help you build your perfect Ireland trip.</p>
+                <a href="planner.html" class="trip-cta">Start Planning →</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="weather-tool" class="weather-panel">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">Weather check</div>
+            <h2 class="section-title">Plan Around Irish Weather</h2>
+            <p class="section-sub">Pick a destination and get a friendly travel tip for what to bring, what to book, and how to enjoy the day.</p>
+        </div>
+        <div class="weather-box">
+            <div class="form-card reveal reveal-delay-1">
+                <h3>Choose a Destination</h3>
+                <form action="#weather-ready">
+                    <div class="form-group">
+                        <label for="weather-destination">Destination</label>
+                        <select id="weather-destination" required>
+                            <option value="">Select a place</option>
+                            <option value="Dublin">Dublin</option>
+                            <option value="Galway">Galway</option>
+                            <option value="Killarney">Killarney</option>
+                            <option value="Glendalough">Glendalough</option>
+                            <option value="Rock of Cashel">Rock of Cashel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="weather-date">Travel Date</label>
+                        <input type="date" id="weather-date" required>
+                    </div>
+                    <button type="submit" class="form-btn">Check Weather</button>
+                    <div class="inline-message success" id="weather-ready">Weather guide ready. Use the smart suggestions and packing cards beside this form.</div>
+                </form>
+            </div>
+            <div class="weather-card reveal reveal-delay-2">
+                <div>
+                    <div class="section-label" style="color:var(--gold-light);">Smart suggestion</div>
+                    <div class="weather-result">A light jacket, flexible plans, and one indoor backup will keep the day easy.</div>
+                </div>
+                <p class="weather-small">For cities, keep a museum or cafe ready. For lakes and mountains, pack waterproof shoes. For heritage days, bring a windproof layer.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- BOOKING FORM -->
+    <section id="booking-form" class="form-section">
+        <div class="form-wrap">
+            <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+                <div class="section-label">Booking support</div>
+                <h2 class="section-title">Plan Your Booking</h2>
+                <p class="section-sub">Tell us your travel details and preferences. This keeps the process simple, and when you are ready you can continue to Skyscanner to compare flights.</p>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-card reveal reveal-delay-1">
+                    <h3>Travel Details Form</h3>
+                    <form action="#booking-submitted">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullname">Full Name</label>
+                                <input type="text" id="fullname" name="fullname" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Your email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="arrival">Arrival Date</label>
+                                <input type="date" id="arrival" name="arrival" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="departure">Departure Date</label>
+                                <input type="date" id="departure" name="departure" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="travellers">Travellers</label>
+                                <select id="travellers" name="travellers" required>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3-4</option>
+                                    <option>5+</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Budget Range</label>
+                                <select id="budget" name="budget" required>
+                                    <option>Budget</option>
+                                    <option>Mid-range</option>
+                                    <option>Luxury</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interests">Interests</label>
+                            <input type="text" id="interests" name="interests" placeholder="Cities, nature, heritage, nightlife, lakes..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Extra Requests</label>
+                            <textarea id="notes" name="notes" placeholder="Tell us more about your ideal trip"></textarea>
+                        </div>
+
+                        <button type="submit" class="form-btn">Save Details</button>
+                        <div class="inline-message success" id="booking-submitted">Submitted. Thank you, an agent will be in contact with you soon.</div>
+                    </form>
+                </div>
+
+                <div class="info-card reveal reveal-delay-2">
+                    <h3>Continue to Booking</h3>
+                    <p>After filling in your trip details, continue to Skyscanner to search flights and compare travel options for your Ireland journey.</p>
+                    <a href="https://www.skyscanner.net/" target="_blank" rel="noopener noreferrer" class="secondary-btn">Go to Skyscanner →</a>
+
+                    <h3 style="margin-top:34px;">Connect With Us</h3>
+                    <p>Call our service desk on <strong>+353 1 555 0198</strong>, or message us on social media for quick trip support.</p>
+
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                        <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok</a>
+                        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="faqs">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">Need help?</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-sub">Quick answers to the things travellers usually ask before choosing a tour, planning dates, or sending booking details.</p>
+        </div>
+
+        <div class="faq-grid" style="max-width:1200px;margin:0 auto;">
+            <div class="faq-card reveal reveal-delay-1">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>Can I change a package before booking?</h3>
+                </div>
+                <p>Yes. The packages are starting ideas, so dates, places, pace, hotel style, and budget can be adjusted before the final plan is made.</p>
+            </div>
+            <div class="faq-card reveal reveal-delay-2">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>How soon will someone contact me?</h3>
+                </div>
+                <p>After you submit your details, an agent will review your request and contact you with the next step as soon as possible.</p>
+            </div>
+            <div class="faq-card reveal reveal-delay-3">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>Do you help with flights and hotels?</h3>
+                </div>
+                <p>We help organise the plan and travel preferences. You can also use the booking link to compare flights and choose travel options that suit you.</p>
+            </div>
+            <div class="faq-card reveal reveal-delay-1">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>What should I pack for Ireland?</h3>
+                </div>
+                <p>Bring layers, comfortable shoes, and a waterproof jacket. Irish weather changes quickly, even on days that start bright.</p>
+            </div>
+            <div class="faq-card reveal reveal-delay-2">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>Are the tours good for families?</h3>
+                </div>
+                <p>Yes. City, lake, heritage, and nature plans can be made family-friendly with shorter travel days and easier stops.</p>
+            </div>
+            <div class="faq-card reveal reveal-delay-3">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>Can I travel without renting a car?</h3>
+                </div>
+                <p>Many city and popular destination plans can work with trains, coaches, day tours, or private transfers depending on your route.</p>
+            </div>
+            <div class="faq-card reveal reveal-delay-1">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>Is the one-on-one planning service for first-time visitors?</h3>
+                </div>
+                <p>Definitely. It is especially useful if you are new to Ireland and want help choosing places without overloading your schedule.</p>
+            </div>
+            <div class="faq-card reveal reveal-delay-2">
+                <div class="faq-question">
+                    <span class="faq-mark">Q</span>
+                    <h3>What happens if the weather is bad?</h3>
+                </div>
+                <p>Plans can include indoor backups such as museums, cafes, castles, shopping streets, and scenic drives for rainy days.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- USER AREA -->
+    <section id="login">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">Your account</div>
+            <h2 class="section-title">User Area</h2>
+            <p class="section-sub">Manage your account, access VIP services, and revisit all your saved plans in one place.</p>
+        </div>
+
+        <div class="login-grid" style="max-width:1200px;margin:0 auto;">
+            <a href="#account-access" class="login-card reveal reveal-delay-1" style="text-decoration:none;">
+                <div class="login-card-num">01</div>
+                <h3>Login</h3>
+                <p>Access your account to manage your personal settings, saved itineraries, and all your bookings.</p>
+            </a>
+            <a href="#vip-membership" class="login-card reveal reveal-delay-2" style="text-decoration:none;">
+                <div class="login-card-num">02</div>
+                <h3>VIP Area</h3>
+                <p>Purchase VIP membership to unlock premium planning tools, priority support, and exclusive travel deals across Ireland.</p>
+            </a>
+            <a href="#starred-plans" class="login-card reveal reveal-delay-3" style="text-decoration:none;">
+                <div class="login-card-num">03</div>
+                <h3>Starred Plans</h3>
+                <p>View the plans and service responses you've saved before. Pick up right where you left off and refine your perfect trip.</p>
+            </a>
+        </div>
+    </section>
+
+
+    <section id="account-access" class="form-section" style="background: var(--green-light);">
+        <div class="form-wrap">
+            <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+                <div class="section-label">Account access</div>
+                <h2 class="section-title">Login or Create an Account</h2>
+                <p class="section-sub">Returning users can log in, while new visitors can create an account to save travel plans and booking preferences.</p>
+            </div>
+
+            <div class="login-options">
+                <div class="option-card reveal reveal-delay-1">
+                    <h4>Existing User</h4>
+                    <p style="margin-bottom:18px;">Already have an account? Log in to continue with your saved details.</p>
+                    <form action="#login-submitted">
+                        <div class="form-group">
+                            <label for="existing-email">Email Address</label>
+                            <input type="email" id="existing-email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="existing-password">Password</label>
+                            <input type="password" id="existing-password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="form-btn">Login</button>
+                        <div class="inline-message success" id="login-submitted">Login submitted. Welcome back.</div>
+                    </form>
+                </div>
+
+                <div class="option-card reveal reveal-delay-2">
+                    <h4>New User</h4>
+                    <p style="margin-bottom:18px;">Create an account to save favourite places, booking preferences, and future plans.</p>
+                    <form action="#account-submitted">
+                        <div class="form-group">
+                            <label for="new-name">Full Name</label>
+                            <input type="text" id="new-name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-email">Email Address</label>
+                            <input type="email" id="new-email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">Create Password</label>
+                            <input type="password" id="new-password" placeholder="Create a password" required>
+                        </div>
+                        <button type="submit" class="form-btn">Create Account</button>
+                        <div class="inline-message success" id="account-submitted">Account created. You can now save plans and come back later.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vip-membership" class="form-section">
+        <div class="form-wrap">
+            <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+                <div class="section-label">Premium experience</div>
+                <h2 class="section-title">VIP Membership Plans</h2>
+                <p class="section-sub">Choose a membership plan for extra support, premium suggestions, and exclusive travel perks while planning your Ireland journey.</p>
+            </div>
+
+            <div class="vip-grid">
+                <div class="plan-card reveal reveal-delay-1">
+                    <span class="plan-badge">Starter</span>
+                    <h3>Explorer</h3>
+                    <div class="plan-price">€9.99 / month</div>
+                    <ul>
+                        <li>Saved travel plans</li>
+                        <li>Basic booking support</li>
+                        <li>Destination recommendations</li>
+                    </ul>
+                    <a href="#explorer-selected" class="form-btn">Choose Plan</a>
+                    <p class="selected-plan" id="explorer-selected">Explorer selected. Your membership choice has been saved for this visit.</p>
+                </div>
+
+                <div class="plan-card reveal reveal-delay-2">
+                    <span class="plan-badge">Popular</span>
+                    <h3>Premium</h3>
+                    <div class="plan-price">€19.99 / month</div>
+                    <ul>
+                        <li>Priority trip planning</li>
+                        <li>Personalised package suggestions</li>
+                        <li>Exclusive member offers</li>
+                    </ul>
+                    <a href="#premium-selected" class="form-btn">Choose Plan</a>
+                    <p class="selected-plan" id="premium-selected">Premium selected. Your membership choice has been saved for this visit.</p>
+                </div>
+
+                <div class="plan-card reveal reveal-delay-3">
+                    <span class="plan-badge">Luxury</span>
+                    <h3>Elite</h3>
+                    <div class="plan-price">€34.99 / month</div>
+                    <ul>
+                        <li>VIP concierge-style planning</li>
+                        <li>Fastest support response</li>
+                        <li>Premium travel deal access</li>
+                    </ul>
+                    <a href="#elite-selected" class="form-btn">Choose Plan</a>
+                    <p class="selected-plan" id="elite-selected">Elite selected. Your membership choice has been saved for this visit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="starred-plans" class="form-section" style="background: var(--green-light);">
+        <div class="form-wrap">
+            <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+                <div class="section-label">Saved ideas</div>
+                <h2 class="section-title">Starred Plans</h2>
+                <p class="section-sub">Visitors can save favourite itineraries, revisit package ideas, and continue planning later without starting from the beginning.</p>
+            </div>
+
+            <div class="vip-grid">
+                <div class="plan-card reveal reveal-delay-1">
+                    <h3>Dublin Weekend</h3>
+                    <p>A short city-focused escape with culture, nightlife, shopping, and cosy cafés.</p>
+                    <a href="package-details.html#dublin-weekend" class="secondary-btn">View Plan Details →</a>
+                </div>
+                <div class="plan-card reveal reveal-delay-2">
+                    <h3>Wild Atlantic Nature Trip</h3>
+                    <p>A peaceful route through mountains, lakes, and scenic west coast viewpoints.</p>
+                    <a href="package-details.html#wild-atlantic" class="secondary-btn">View Plan Details →</a>
+                </div>
+                <div class="plan-card reveal reveal-delay-3">
+                    <h3>Irish Heritage Journey</h3>
+                    <p>A culture-rich trip with castles, historic landmarks, and traditional Irish experiences.</p>
+                    <a href="package-details.html#heritage-journey" class="secondary-btn">View Plan Details →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="footer-logo">Irish<span>guider</span></div>
+        <p>© 2026 Irishguider. All rights reserved.</p>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Contact</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok</a>
+        </div>
+    </footer>
+
+</body>
+</html>

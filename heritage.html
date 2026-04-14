@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Heritage — Irishguider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #1a4d38; --green-mid: #2f6f57; --green-light: #e8f1ed;
+            --gold: #c8891f; --gold-light: #f0c96b;
+            --cream: #faf8f3; --text: #1c1c1c; --text-muted: #6b6b6b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+        header 
+        { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(26,77,56,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; }
+        .logo span { color: var(--gold-light); }
+
+        nav a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 100px; transition: all 0.25s; margin-left: 4px; }
+        nav a:hover, nav a.active { color: #fff; background: rgba(255,255,255,0.12); }
+
+        .hero { height: 90vh; min-height: 600px; background: linear-gradient(to bottom, rgba(10,30,20,0.45) 0%, rgba(10,30,20,0.78) 100%), url("blarney.png") center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
+
+        .hero-badge { display: inline-block; background: rgba(200,137,31,0.25); border: 1px solid rgba(200,137,31,0.5); color: var(--gold-light); font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; padding: 7px 18px; border-radius: 100px; margin-bottom: 24px; }
+
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(44px,7vw,80px); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
+
+        .hero h1 em { font-style: italic; color: var(--gold-light); }
+
+        .hero p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+        section { padding: 90px 48px; }
+        .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 12px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px,4vw,48px); font-weight: 700; color: var(--green); line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+        .section-sub { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.7; margin-bottom: 60px; }
+
+        #sites { background: #fff; }
+        .sites-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .site-card { border-radius: 20px; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); transition: all 0.35s; }
+        .site-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(26,77,56,0.12); }
+        .site-card img { width: 100%; height: 240px; object-fit: cover; display: block; }
+        .site-card-body { padding: 28px; }
+        .site-tag { display: inline-block; background: var(--green-light); color: var(--green-mid); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 12px; }
+        .site-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--green); margin-bottom: 10px; }
+        .site-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        /* WHY VISIT STRIP */
+        .why-strip { background: var(--green-light); padding: 80px 48px; }
+        .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .why-quote { font-family: 'Playfair Display', serif; font-size: clamp(24px,3vw,36px); font-style: italic; color: var(--green); line-height: 1.4; }
+        .why-quote::before { content: '\201C'; font-size: 80px; color: var(--green-mid); opacity: 0.3; line-height: 0; vertical-align: -0.4em; margin-right: 8px; }
+        .why-text { font-size: 16px; color: var(--text-muted); line-height: 1.8; }
+
+        #packages { background: var(--green); }
+        #packages .section-title { color: #fff; }
+        #packages .section-label { color: var(--gold-light); }
+        #packages .section-sub { color: rgba(255,255,255,0.6); }
+        .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .package-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 36px; transition: all 0.3s; text-decoration: none; display: block; }
+        .package-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-6px); border-color: rgba(200,137,31,0.4); }
+        .package-days { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
+        .package-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; margin-bottom: 12px; }
+        .package-card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+        .package-arrow { margin-top: 24px; color: var(--gold-light); font-size: 20px; }
+        .interactive-strip { background: var(--green-light); }
+        .interactive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1200px; margin: 0 auto; }
+        .interactive-card { background: #fff; border: 1px solid rgba(47,111,87,0.14); border-radius: 8px; padding: 24px; cursor: pointer; transition: all 0.25s; }
+        .interactive-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(26,77,56,0.1); }
+        .interactive-card h3 { font-family: 'Playfair Display', serif; color: var(--green); margin-bottom: 10px; }
+        .interactive-card p { color: var(--text-muted); line-height: 1.7; font-size: 14px; }
+        .interactive-card.active { border-color: var(--gold); background: #fffaf1; }
+        .back-wrap { text-align: center; padding: 60px 0 0; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; padding: 14px 32px; border-radius: 100px; transition: all 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+        footer { background: #0d2a1e; color: rgba(255,255,255,0.5); text-align: center; padding: 28px 48px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #fff; }
+        .footer-logo span { color: var(--gold-light); }
+
+        .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            header { padding: 14px 20px; }
+            section { padding: 60px 20px; }
+            .sites-grid { grid-template-columns: 1fr; }
+            .interactive-grid { grid-template-columns: 1fr; }
+            .packages-grid { grid-template-columns: 1fr; }
+            .why-inner { grid-template-columns: 1fr; gap: 32px; }
+            .why-strip { padding: 60px 20px; }
+            footer { padding: 24px 20px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Irish<span>guider</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cities.html">Cities</a>
+            <a href="hills.html">Mountains</a>
+            <a href="lakes.html">Lakes</a>
+            <a href="heritage.html" class="active">Heritage</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <div class="hero-badge">Ireland's History</div>
+            <h1>Discover Ireland's<br><em>Cultural Heritage</em></h1>
+            <p>The rich cultural heritage gives rise to a variety of cultural products — arousing the interest of every culture enthusiast who walks through Ireland's ancient doors.</p>
+        </div>
+    </section>
+
+    <section id="sites">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="reveal">
+                <div class="section-label">Famous sites</div>
+                <h2 class="section-title">Heritage Destinations</h2>
+                <p class="section-sub">From medieval castles to iconic historical landmarks — these places offer a powerful experience of Ireland's beauty, culture, and timeless history.</p>
+            </div>
+            <div class="sites-grid">
+                <div class="site-card reveal reveal-delay-1">
+                    <img src="blarney.png" alt="Blarney Castle">
+                    <div class="site-card-body">
+                        <span class="site-tag">Cork</span>
+                        <h3>Blarney Castle</h3>
+                        <p>One of Ireland's most loved heritage sites, famous for its medieval charm, beautiful gardens, and legendary history stretching back centuries.</p>
+                    </div>
+                </div>
+                <div class="site-card reveal reveal-delay-2">
+                    <img src="the Rock of Cashel.png" alt="Rock of Cashel">
+                    <div class="site-card-body">
+                        <span class="site-tag">Tipperary</span>
+                        <h3>Rock of Cashel</h3>
+                        <p>A dramatic symbol of Irish history, filled with ancient buildings, stunning panoramic views, and deep cultural importance to the Irish people.</p>
+                    </div>
+                </div>
+                <div class="site-card reveal reveal-delay-3">
+                    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=80" alt="Kilmainham Gaol">
+                    <div class="site-card-body">
+                        <span class="site-tag">Dublin</span>
+                        <h3>Kilmainham Gaol</h3>
+                        <p>A moving journey through Ireland's past — one of the most important and emotionally powerful historical sites in the entire country.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="interactive-strip">
+        <div style="max-width:1200px;margin:0 auto 50px;" class="reveal">
+            <div class="section-label">Step into history</div>
+            <h2 class="section-title">Choose Your Heritage Route</h2>
+            <p class="section-sub">Tap a card to pick the story you want your cultural day to tell.</p>
+        </div>
+        <div class="interactive-grid">
+            <div class="interactive-card reveal reveal-delay-1 active">
+                <h3>Castle Day</h3>
+                <p>Gardens, stone towers, and old legends with enough time to explore without rushing.</p>
+            </div>
+            <div class="interactive-card reveal reveal-delay-2">
+                <h3>Museum Trail</h3>
+                <p>Indoor history, Irish culture, and meaningful exhibits for a weather-proof day.</p>
+            </div>
+            <div class="interactive-card reveal reveal-delay-3">
+                <h3>Ancient Views</h3>
+                <p>Historic ruins, big skies, and quiet places where Ireland's older stories feel close.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="why-strip">
+        <div class="why-inner">
+            <div class="reveal">
+                <p class="why-quote">Ireland's heritage is more than old buildings — it is the heart of the country's identity.</p>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <p class="why-text">Every castle, cobbled street, and historic site carries stories that connect visitors to centuries of tradition and culture. Walking through these places isn't just sightseeing — it's stepping into the living story of a nation.</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="packages">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">Plan your visit</div>
+            <h2 class="section-title">Recommended Heritage Packages</h2>
+            <p class="section-sub">Curated itineraries for those who want to explore Ireland's most meaningful and historic places at their own pace.</p>
+        </div>
+        <div class="packages-grid" style="max-width:1200px;margin:0 auto;">
+            <a href="package-details.html#historic-dublin" class="package-card reveal reveal-delay-1">
+                <div class="package-days">2 Days</div>
+                <h3>Historic Dublin Tour</h3>
+                <p>Explore famous buildings, museums, and meaningful cultural landmarks that tell the story of modern Ireland.</p>
+                <div class="package-arrow">→</div>
+            </a>
+            <a href="package-details.html#castles-heritage" class="package-card reveal reveal-delay-2">
+                <div class="package-days">4 Days</div>
+                <h3>Castles & Heritage Trip</h3>
+                <p>Visit stunning castles, ancient sites, and historic Irish towns that have stood for hundreds of years.</p>
+                <div class="package-arrow">→</div>
+            </a>
+            <a href="package-details.html#irish-heritage" class="package-card reveal reveal-delay-3">
+                <div class="package-days">6 Days</div>
+                <h3>Irish Heritage Experience</h3>
+                <p>Enjoy a complete journey through Ireland's traditions, stories, and architecture — from coast to coast.</p>
+                <div class="package-arrow">→</div>
+            </a>
+        </div>
+        <div class="back-wrap">
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Irish<span>guider</span></div>
+        <p>© 2026 Irishguider. All rights reserved.</p>
+        <p>Explore Ireland Your Way</p>
+    </footer>
+
+</body>
+</html>

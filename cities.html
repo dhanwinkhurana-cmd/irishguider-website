@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cities — Irishguider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #1a4d38;
+            --green-mid: #2f6f57;
+            --green-light: #e8f1ed;
+            --gold: #c8891f;
+            --gold-light: #f0c96b;
+            --cream: #faf8f3;
+            --text: #1c1c1c;
+            --text-muted: #6b6b6b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 48px;
+            background: rgba(26, 77, 56, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; }
+        .logo span { color: var(--gold-light); }
+        nav a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 100px; transition: all 0.25s; margin-left: 4px; }
+        nav a:hover { color: #fff; background: rgba(255,255,255,0.12); }
+
+        .hero {
+            height: 90vh; min-height: 600px;
+            background: linear-gradient(to bottom, rgba(10,30,20,0.5) 0%, rgba(10,30,20,0.75) 100%), url("cities.png") center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 24px;
+        }
+        .hero-content { max-width: 800px; }
+        .hero-badge {
+            display: inline-block; background: rgba(200,137,31,0.25); border: 1px solid rgba(200,137,31,0.5);
+            color: var(--gold-light); font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+            padding: 7px 18px; border-radius: 100px; margin-bottom: 24px;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(44px,7vw,80px); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
+        .hero h1 em { font-style: italic; color: var(--gold-light); }
+        .hero p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+        section { padding: 90px 48px; }
+        .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 12px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px,4vw,48px); font-weight: 700; color: var(--green); line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+        .section-sub { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.7; margin-bottom: 60px; }
+
+        /* FEATURES */
+        #features { background: #fff; }
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1200px; margin: 0 auto; }
+        .feature-card { border-radius: 20px; overflow: hidden; position: relative; }
+        .feature-card img { width: 100%; height: 340px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .feature-card:hover img { transform: scale(1.05); }
+        .feature-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(10,30,20,0.9) 0%, transparent 55%);
+            padding: 32px; display: flex; flex-direction: column; justify-content: flex-end;
+        }
+        .feature-tag { display: inline-block; background: rgba(200,137,31,0.9); color: #fff; font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 10px; width: fit-content; }
+        .feature-overlay h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: #fff; margin-bottom: 10px; }
+        .feature-overlay p { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.6; }
+
+        /* PACKAGES */
+        #packages { background: var(--green); }
+        #packages .section-title { color: #fff; }
+        #packages .section-label { color: var(--gold-light); }
+        #packages .section-sub { color: rgba(255,255,255,0.6); }
+
+        .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .package-card {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px; padding: 36px; transition: all 0.3s; text-decoration: none; display: block;
+        }
+        .package-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-6px); border-color: rgba(200,137,31,0.4); }
+        .package-days { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
+        .package-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; margin-bottom: 12px; }
+        .package-card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+        .package-arrow { margin-top: 24px; color: var(--gold-light); font-size: 20px; }
+        .interactive-strip { background: var(--green-light); }
+        .interactive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1200px; margin: 0 auto; }
+        .interactive-card { background: #fff; border: 1px solid rgba(47,111,87,0.14); border-radius: 8px; padding: 24px; cursor: pointer; transition: all 0.25s; }
+        .interactive-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(26,77,56,0.1); }
+        .interactive-card h3 { font-family: 'Playfair Display', serif; color: var(--green); margin-bottom: 10px; }
+        .interactive-card p { color: var(--text-muted); line-height: 1.7; font-size: 14px; }
+        .interactive-card.active { border-color: var(--gold); background: #fffaf1; }
+
+        .back-wrap { text-align: center; padding: 60px 0 0; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; padding: 14px 32px; border-radius: 100px; transition: all 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+        footer { background: #0d2a1e; color: rgba(255,255,255,0.5); text-align: center; padding: 28px 48px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #fff; }
+        .footer-logo span { color: var(--gold-light); }
+
+        .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            header { padding: 14px 20px; }
+            section { padding: 60px 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .interactive-grid { grid-template-columns: 1fr; }
+            .packages-grid { grid-template-columns: 1fr; }
+            footer { padding: 24px 20px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Irish<span>guider</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cities.html">Cities</a>
+            <a href="hills.html">Mountains</a>
+            <a href="lakes.html">Lakes</a>
+            <a href="heritage.html">Heritage</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Urban Ireland</div>
+            <h1>Discover Ireland's<br><em>Most Beautiful Cities</em></h1>
+            <p>Explore lively streets, historic landmarks, traditional pubs, shopping areas, and cultural attractions across Ireland's best city destinations.</p>
+        </div>
+    </section>
+
+    <section class="interactive-strip">
+        <div style="max-width:1200px;margin:0 auto 50px;" class="reveal">
+            <div class="section-label">Try the city mood</div>
+            <h2 class="section-title">Choose Your City Day</h2>
+            <p class="section-sub">Tap a card to imagine a different kind of city route before choosing a package.</p>
+        </div>
+        <div class="interactive-grid">
+            <div class="interactive-card reveal reveal-delay-1 active">
+                <h3>Culture Morning</h3>
+                <p>Start with museums, galleries, and historic streets before a relaxed lunch in the city centre.</p>
+            </div>
+            <div class="interactive-card reveal reveal-delay-2">
+                <h3>Pub Evening</h3>
+                <p>Save your energy for live music, cosy pubs, friendly conversation, and a proper Irish night out.</p>
+            </div>
+            <div class="interactive-card reveal reveal-delay-3">
+                <h3>Shopping Walk</h3>
+                <p>Mix local shops, cafes, river views, and easy photo stops without making the day too busy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="reveal">
+                <div class="section-label">What awaits you</div>
+                <h2 class="section-title">Featured City Experiences</h2>
+                <p class="section-sub">Ireland's cities offer a unique blend of vibrant nightlife, world-class culture, and deep-rooted history you won't find anywhere else.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal-delay-1">
+                    <img src="bars.png" alt="Irish Bars">
+                    <div class="feature-overlay">
+                        <span class="feature-tag">Nightlife</span>
+                        <h3>Bars & Pubs</h3>
+                        <p>As the birthplace of bar culture, Ireland has a large number of well-known pubs. Beer enthusiasts can enjoy a traditional bar environment — if you're an extrovert, Irish bars are a view you simply shouldn't miss.</p>
+                    </div>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <img src="museums.png" alt="Irish Museums">
+                    <div class="feature-overlay">
+                        <span class="feature-tag">Culture</span>
+                        <h3>Museums</h3>
+                        <p>Ireland is a country with a long history and broad culture. Everyone can find a museum for their interest — even rock fans can find one dedicated to the history of Irish rock and roll!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="packages">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">Ready to go?</div>
+            <h2 class="section-title">Recommended City Packages</h2>
+            <p class="section-sub">Choose a package crafted for city lovers and get the most out of every urban experience Ireland has to offer.</p>
+        </div>
+        <div class="packages-grid" style="max-width:1200px;margin:0 auto;">
+            <a href="package-details.html#dublin-break" class="package-card reveal reveal-delay-1">
+                <div class="package-days">3 Days</div>
+                <h3>Dublin Break</h3>
+                <p>Enjoy Dublin's museums, shopping streets, restaurants, and nightlife in a short city escape.</p>
+                <div class="package-arrow">→</div>
+            </a>
+            <a href="package-details.html#dublin-galway" class="package-card reveal reveal-delay-2">
+                <div class="package-days">5 Days</div>
+                <h3>Dublin & Galway Tour</h3>
+                <p>Visit two of Ireland's most loved cities and experience both modern and traditional culture.</p>
+                <div class="package-arrow">→</div>
+            </a>
+            <a href="package-details.html#city-explorer" class="package-card reveal reveal-delay-3">
+                <div class="package-days">7 Days</div>
+                <h3>Irish City Explorer</h3>
+                <p>Travel through Dublin, Cork, and Galway with a full week of city attractions and guided experiences.</p>
+                <div class="package-arrow">→</div>
+            </a>
+        </div>
+        <div class="back-wrap">
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Irish<span>guider</span></div>
+        <p>© 2026 Irishguider. All rights reserved.</p>
+        <p>Explore Ireland Your Way</p>
+    </footer>
+</body>
+</html>

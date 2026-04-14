@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Details — Irishguider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --green:#1a4d38; --green-mid:#2f6f57; --green-light:#e8f1ed; --gold:#c8891f; --gold-light:#f0c96b; --cream:#faf8f3; --text:#1c1c1c; --text-muted:#6b6b6b; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'DM Sans', sans-serif; background:var(--cream); color:var(--text); }
+        header { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; align-items:center; justify-content:space-between; padding:18px 48px; background:rgba(26,77,56,0.96); backdrop-filter:blur(12px); }
+        .logo { font-family:'Playfair Display', serif; font-size:26px; font-weight:900; color:#fff; text-decoration:none; }
+        .logo span { color:var(--gold-light); }
+        nav a { color:rgba(255,255,255,0.75); text-decoration:none; margin-left:18px; font-size:14px; }
+        nav a:hover { color:#fff; }
+        .hero { min-height:62vh; padding:150px 48px 80px; display:grid; align-items:end; background:linear-gradient(to bottom, rgba(10,30,20,0.34), rgba(10,30,20,0.82)), url("bridge.png") center/cover no-repeat; }
+        .hero-inner, .wrap { max-width:1200px; margin:0 auto; width:100%; }
+        .badge { display:inline-block; background:rgba(200,137,31,0.25); border:1px solid rgba(200,137,31,0.5); color:var(--gold-light); font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:7px 16px; border-radius:8px; margin-bottom:18px; }
+        h1 { font-family:'Playfair Display', serif; color:#fff; font-size:clamp(44px,7vw,84px); line-height:1.05; margin-bottom:18px; }
+        .hero p { color:rgba(255,255,255,0.78); max-width:650px; line-height:1.8; font-size:17px; }
+        section { padding:90px 48px; scroll-margin-top:90px; }
+        .section-title { font-family:'Playfair Display', serif; font-size:clamp(32px,4vw,52px); color:var(--green); line-height:1.15; margin-bottom:16px; }
+        .section-sub { color:var(--text-muted); max-width:680px; line-height:1.7; margin-bottom:40px; }
+        .plan { background:#fff; border-top:1px solid rgba(26,77,56,0.12); }
+        .plan:nth-of-type(odd) { background:var(--cream); }
+        .plan-grid { display:grid; grid-template-columns:0.95fr 1.05fr; gap:28px; align-items:start; }
+        .plan-photo { width:100%; min-height:430px; object-fit:cover; border-radius:8px; display:block; }
+        .meta { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin:24px 0; }
+        .meta div { background:var(--green-light); border-radius:8px; padding:16px; color:var(--text-muted); line-height:1.5; }
+        .meta strong { display:block; color:var(--green); margin-bottom:6px; }
+        .card { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:8px; padding:26px; box-shadow:0 16px 40px rgba(26,77,56,0.08); }
+        .card h3 { font-family:'Playfair Display', serif; color:var(--green); font-size:26px; margin-bottom:14px; }
+        ul { padding-left:18px; color:var(--text-muted); line-height:1.9; }
+        .plan p { color:var(--text-muted); line-height:1.8; }
+        .btn { display:inline-flex; margin-top:24px; align-items:center; justify-content:center; text-decoration:none; background:var(--green); color:#fff; border-radius:8px; padding:15px 28px; font-weight:500; transition:all 0.25s; }
+        .btn:hover { background:var(--green-mid); transform:translateY(-2px); }
+        footer { background:#0d2a1e; color:rgba(255,255,255,0.55); padding:28px 48px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+        @media (max-width:850px) { header{padding:14px 20px;} nav{display:none;} .hero,section{padding-left:20px; padding-right:20px;} .plan-grid,.meta{grid-template-columns:1fr;} .plan-photo{min-height:260px;} footer{justify-content:center; text-align:center;} }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Irish<span>guider</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cities.html">Cities</a>
+            <a href="hills.html">Mountains</a>
+            <a href="lakes.html">Lakes</a>
+            <a href="heritage.html">Heritage</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <span class="badge">Plan details</span>
+            <h1>Choose the trip that fits you</h1>
+            <p>Each package includes days, places, prices, pictures, and highlights. Open a plan to see the itinerary and send your details.</p>
+        </div>
+    </section>
+
+    <section id="dublin-weekend" class="plan">
+        <div class="wrap plan-grid">
+            <img src="cities.png" alt="Dublin city" class="plan-photo">
+            <div>
+                <span class="badge">3 Days</span>
+                <h2 class="section-title">Dublin Weekend</h2>
+                <p>A lively city escape with culture, shopping, pubs, museums, and easy walking routes.</p>
+                <div class="meta"><div><strong>Price</strong>from €349</div><div><strong>Places</strong>Dublin Castle, Trinity College, Temple Bar</div><div><strong>Best For</strong>First city visit</div></div>
+                <div class="card"><h3>Highlights</h3><ul><li>Central Dublin walking plan</li><li>Museum and pub recommendations</li><li>Free afternoon for shopping or cafes</li><li>Evening food and music ideas</li></ul></div>
+                <a href="about-plan.html#dublin-weekend" class="btn">About This Plan →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="wild-atlantic" class="plan">
+        <div class="wrap plan-grid">
+            <img src="Carrick Island.png" alt="Irish coast and islands" class="plan-photo">
+            <div>
+                <span class="badge">5 Days</span>
+                <h2 class="section-title">Wild Atlantic Nature Trip</h2>
+                <p>A peaceful nature route with fresh air, mountain views, water, and quiet places to slow down.</p>
+                <div class="meta"><div><strong>Price</strong>from €679</div><div><strong>Places</strong>Galway, Connemara, lake stops</div><div><strong>Best For</strong>Scenic travel</div></div>
+                <div class="card"><h3>Highlights</h3><ul><li>Scenic driving route</li><li>Island or coastal day option</li><li>Easy walk suggestions</li><li>Weather-friendly backup stops</li></ul></div>
+                <a href="about-plan.html#wild-atlantic" class="btn">About This Plan →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="heritage-journey" class="plan">
+        <div class="wrap plan-grid">
+            <img src="the Rock of Cashel.png" alt="Rock of Cashel" class="plan-photo">
+            <div>
+                <span class="badge">6 Days</span>
+                <h2 class="section-title">Irish Heritage Journey</h2>
+                <p>A culture-rich trip through castles, historic towns, museums, and traditional stories.</p>
+                <div class="meta"><div><strong>Price</strong>from €749</div><div><strong>Places</strong>Blarney, Cashel, Dublin heritage sites</div><div><strong>Best For</strong>History lovers</div></div>
+                <div class="card"><h3>Highlights</h3><ul><li>Castle visit route</li><li>Historic town stops</li><li>Museum suggestions</li><li>Guided tour booking support</li></ul></div>
+                <a href="about-plan.html#heritage-journey" class="btn">About This Plan →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="dublin-break" class="plan"><div class="wrap plan-grid"><img src="bars.png" alt="Irish pubs" class="plan-photo"><div><span class="badge">3 Days</span><h2 class="section-title">Dublin Break</h2><p>A compact city break for first-time visitors who want Dublin energy without rushing.</p><div class="meta"><div><strong>Price</strong>from €329</div><div><strong>Places</strong>Dublin centre, museums, pubs</div><div><strong>Best For</strong>Short stays</div></div><div class="card"><h3>Highlights</h3><ul><li>City highlights route</li><li>Nightlife suggestions</li><li>Museum options</li><li>Airport transfer advice</li></ul></div><a href="about-plan.html#dublin-break" class="btn">About This Plan →</a></div></div></section>
+    <section id="dublin-galway" class="plan"><div class="wrap plan-grid"><img src="cities.png" alt="Irish city street" class="plan-photo"><div><span class="badge">5 Days</span><h2 class="section-title">Dublin & Galway Tour</h2><p>Two favourite Irish cities in one trip, mixing modern culture with traditional charm.</p><div class="meta"><div><strong>Price</strong>from €589</div><div><strong>Places</strong>Dublin, Galway, Latin Quarter</div><div><strong>Best For</strong>Two-city trips</div></div><div class="card"><h3>Highlights</h3><ul><li>Two-city itinerary</li><li>Train or coach planning</li><li>Food and music stops</li><li>Free time built in</li></ul></div><a href="about-plan.html#dublin-galway" class="btn">About This Plan →</a></div></div></section>
+    <section id="city-explorer" class="plan"><div class="wrap plan-grid"><img src="museums.png" alt="Museum visit" class="plan-photo"><div><span class="badge">7 Days</span><h2 class="section-title">Irish City Explorer</h2><p>A full week of city attractions, museums, shopping, restaurants, and guided experiences.</p><div class="meta"><div><strong>Price</strong>from €829</div><div><strong>Places</strong>Dublin, Cork, Galway</div><div><strong>Best For</strong>City lovers</div></div><div class="card"><h3>Highlights</h3><ul><li>Multi-city schedule</li><li>Daily attraction ideas</li><li>Restaurant suggestions</li><li>Booking support</li></ul></div><a href="about-plan.html#city-explorer" class="btn">About This Plan →</a></div></div></section>
+    <section id="wicklow-escape" class="plan"><div class="wrap plan-grid"><img src="hills.png" alt="Irish hills" class="plan-photo"><div><span class="badge">2 Days</span><h2 class="section-title">Wicklow Escape</h2><p>A short nature reset with hills, quiet trails, and beautiful valley views.</p><div class="meta"><div><strong>Price</strong>from €249</div><div><strong>Places</strong>Wicklow Mountains, Glendalough</div><div><strong>Best For</strong>Weekend nature</div></div><div class="card"><h3>Highlights</h3><ul><li>Easy walking route</li><li>Scenic photo stops</li><li>Packing tips</li><li>Cafe and lunch suggestions</li></ul></div><a href="about-plan.html#wicklow-escape" class="btn">About This Plan →</a></div></div></section>
+    <section id="island-adventure" class="plan"><div class="wrap plan-grid"><img src="Carrick Island.png" alt="Island bridge" class="plan-photo"><div><span class="badge">4 Days</span><h2 class="section-title">Island Adventure</h2><p>A slower coastal trip for travellers who want space, water, and quiet moments.</p><div class="meta"><div><strong>Price</strong>from €539</div><div><strong>Places</strong>Coastal islands, sea views</div><div><strong>Best For</strong>Quiet escapes</div></div><div class="card"><h3>Highlights</h3><ul><li>Island day plan</li><li>Ferry timing advice</li><li>Coastal walks</li><li>Bad-weather options</li></ul></div><a href="about-plan.html#island-adventure" class="btn">About This Plan →</a></div></div></section>
+    <section id="mountains-coast" class="plan"><div class="wrap plan-grid"><img src="hills.png" alt="Mountains and coast" class="plan-photo"><div><span class="badge">6 Days</span><h2 class="section-title">Mountains & Coast Tour</h2><p>A balanced route with wide landscapes, fresh air, and calm places to pause.</p><div class="meta"><div><strong>Price</strong>from €739</div><div><strong>Places</strong>Mountain trails, coastal routes</div><div><strong>Best For</strong>Outdoor trips</div></div><div class="card"><h3>Highlights</h3><ul><li>Mountain and coast route</li><li>Gentle walk options</li><li>Photo viewpoints</li><li>Daily travel pacing</li></ul></div><a href="about-plan.html#mountains-coast" class="btn">About This Plan →</a></div></div></section>
+    <section id="killarney-escape" class="plan"><div class="wrap plan-grid"><img src="Glendalough Upper Lake.png" alt="Irish lake" class="plan-photo"><div><span class="badge">2 Days</span><h2 class="section-title">Killarney Escape</h2><p>A relaxing lake break with boat trip ideas and peaceful walking routes.</p><div class="meta"><div><strong>Price</strong>from €269</div><div><strong>Places</strong>Killarney lakes, national park</div><div><strong>Best For</strong>Lake views</div></div><div class="card"><h3>Highlights</h3><ul><li>Lake visit plan</li><li>Boat ride suggestion</li><li>National park walk</li><li>Cosy food stops</li></ul></div><a href="about-plan.html#killarney-escape" class="btn">About This Plan →</a></div></div></section>
+    <section id="nature-lakes" class="plan"><div class="wrap plan-grid"><img src="Glendalough Upper Lake.png" alt="Lake route" class="plan-photo"><div><span class="badge">3 Days</span><h2 class="section-title">Nature & Lakes Tour</h2><p>A scenic route around calm water, green views, and simple nature experiences.</p><div class="meta"><div><strong>Price</strong>from €399</div><div><strong>Places</strong>Irish lakes, forests, viewpoints</div><div><strong>Best For</strong>Slow travel</div></div><div class="card"><h3>Highlights</h3><ul><li>Lake route</li><li>Easy walks</li><li>Weather packing list</li><li>Transport suggestions</li></ul></div><a href="about-plan.html#nature-lakes" class="btn">About This Plan →</a></div></div></section>
+    <section id="waterside-package" class="plan"><div class="wrap plan-grid"><img src="Glendalough Upper Lake.png" alt="Waterside view" class="plan-photo"><div><span class="badge">5 Days</span><h2 class="section-title">Relaxing Waterside Package</h2><p>A restorative trip built around water, gentle movement, and slower days.</p><div class="meta"><div><strong>Price</strong>from €649</div><div><strong>Places</strong>Kerry lakes, Glendalough</div><div><strong>Best For</strong>Restful holidays</div></div><div class="card"><h3>Highlights</h3><ul><li>Slow-paced itinerary</li><li>Lake viewpoints</li><li>Rest day ideas</li><li>Accommodation area suggestions</li></ul></div><a href="about-plan.html#waterside-package" class="btn">About This Plan →</a></div></div></section>
+    <section id="historic-dublin" class="plan"><div class="wrap plan-grid"><img src="museums.png" alt="Historic Dublin" class="plan-photo"><div><span class="badge">2 Days</span><h2 class="section-title">Historic Dublin Tour</h2><p>A short heritage route through the stories and buildings of modern Ireland.</p><div class="meta"><div><strong>Price</strong>from €289</div><div><strong>Places</strong>Dublin Castle, museums</div><div><strong>Best For</strong>Quick heritage</div></div><div class="card"><h3>Highlights</h3><ul><li>Historic city walk</li><li>Museum plan</li><li>Lunch stop ideas</li><li>Easy transport tips</li></ul></div><a href="about-plan.html#historic-dublin" class="btn">About This Plan →</a></div></div></section>
+    <section id="castles-heritage" class="plan"><div class="wrap plan-grid"><img src="the Rock of Cashel.png" alt="Castle trip" class="plan-photo"><div><span class="badge">4 Days</span><h2 class="section-title">Castles & Heritage Trip</h2><p>A castle-focused trip with gardens, stone walls, history, and classic Irish scenery.</p><div class="meta"><div><strong>Price</strong>from €549</div><div><strong>Places</strong>Blarney, Cashel, heritage towns</div><div><strong>Best For</strong>Castles</div></div><div class="card"><h3>Highlights</h3><ul><li>Castle route</li><li>Garden visits</li><li>Heritage town stops</li><li>Guided tour options</li></ul></div><a href="about-plan.html#castles-heritage" class="btn">About This Plan →</a></div></div></section>
+    <section id="irish-heritage" class="plan"><div class="wrap plan-grid"><img src="museums.png" alt="Irish heritage" class="plan-photo"><div><span class="badge">6 Days</span><h2 class="section-title">Irish Heritage Experience</h2><p>A deeper cultural route across Ireland with famous places and local stories.</p><div class="meta"><div><strong>Price</strong>from €779</div><div><strong>Places</strong>Dublin, Cork, Tipperary</div><div><strong>Best For</strong>Culture trips</div></div><div class="card"><h3>Highlights</h3><ul><li>Multi-region heritage plan</li><li>Castle and museum mix</li><li>Traditional food ideas</li><li>Booking support</li></ul></div><a href="about-plan.html#irish-heritage" class="btn">About This Plan →</a></div></div></section>
+
+    <footer>
+        <div class="logo">Irish<span>guider</span></div>
+        <p>Explore Ireland Your Way</p>
+    </footer>
+</body>
+</html>

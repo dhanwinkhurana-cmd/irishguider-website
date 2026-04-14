@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakes — Irishguider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #1a4d38; --green-mid: #2f6f57; --green-light: #e8f1ed;
+            --gold: #c8891f; --gold-light: #f0c96b;
+            --cream: #faf8f3; --text: #1c1c1c; --text-muted: #6b6b6b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(26,77,56,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; }
+        .logo span { color: var(--gold-light); }
+        nav a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 100px; transition: all 0.25s; margin-left: 4px; }
+        nav a:hover { color: #fff; background: rgba(255,255,255,0.12); }
+
+        .hero { height: 90vh; min-height: 600px; background: linear-gradient(to bottom, rgba(10,30,20,0.4) 0%, rgba(10,30,20,0.75) 100%), url("Glendalough Upper Lake.png") center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
+        .hero-badge { display: inline-block; background: rgba(200,137,31,0.25); border: 1px solid rgba(200,137,31,0.5); color: var(--gold-light); font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; padding: 7px 18px; border-radius: 100px; margin-bottom: 24px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(44px,7vw,80px); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
+        .hero h1 em { font-style: italic; color: var(--gold-light); }
+        .hero p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+        section { padding: 90px 48px; }
+        .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 12px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px,4vw,48px); font-weight: 700; color: var(--green); line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+        .section-sub { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.7; margin-bottom: 60px; }
+
+        #lakes-list { background: #fff; }
+
+        .lakes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .lake-card { border-radius: 20px; overflow: hidden; background: white; border: 1px solid rgba(0,0,0,0.06); transition: all 0.35s; }
+        .lake-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(26,77,56,0.12); }
+        .lake-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .lake-card-body { padding: 28px; }
+        .lake-tag { display: inline-block; background: var(--green-light); color: var(--green-mid); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 12px; }
+        .lake-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--green); margin-bottom: 10px; }
+        .lake-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        #packages { background: var(--green); }
+        #packages .section-title { color: #fff; }
+        #packages .section-label { color: var(--gold-light); }
+        #packages .section-sub { color: rgba(255,255,255,0.6); }
+        .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .package-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 36px; transition: all 0.3s; text-decoration: none; display: block; }
+        .package-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-6px); border-color: rgba(200,137,31,0.4); }
+        .package-days { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; }
+        .package-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; margin-bottom: 12px; }
+        .package-card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+        .package-arrow { margin-top: 24px; color: var(--gold-light); font-size: 20px; }
+        .interactive-strip { background: var(--green-light); }
+        .interactive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1200px; margin: 0 auto; }
+        .interactive-card { background: #fff; border: 1px solid rgba(47,111,87,0.14); border-radius: 8px; padding: 24px; cursor: pointer; transition: all 0.25s; }
+        .interactive-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(26,77,56,0.1); }
+        .interactive-card h3 { font-family: 'Playfair Display', serif; color: var(--green); margin-bottom: 10px; }
+        .interactive-card p { color: var(--text-muted); line-height: 1.7; font-size: 14px; }
+        .interactive-card.active { border-color: var(--gold); background: #fffaf1; }
+        .back-wrap { text-align: center; padding: 60px 0 0; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; padding: 14px 32px; border-radius: 100px; transition: all 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+        footer { background: #0d2a1e; color: rgba(255,255,255,0.5); text-align: center; padding: 28px 48px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #fff; }
+        .footer-logo span { color: var(--gold-light); }
+
+        .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            header { padding: 14px 20px; }
+            section { padding: 60px 20px; }
+            .lakes-grid { grid-template-columns: 1fr; }
+            .interactive-grid { grid-template-columns: 1fr; }
+            .packages-grid { grid-template-columns: 1fr; }
+            footer { padding: 24px 20px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Irish<span>guider</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cities.html">Cities</a>
+            <a href="hills.html">Mountains</a>
+            <a href="lakes.html">Lakes</a>
+            <a href="heritage.html">Heritage</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <div class="hero-badge">Lakeside Ireland</div>
+            <h1>Ireland's<br><em>Stunning Lakes</em></h1>
+            <p>Beautiful lakes with creatures showing out in rippling water — a romantic atmosphere perfect for couples and solo adventurers alike.</p>
+        </div>
+    </section>
+
+    <section class="interactive-strip">
+        <div style="max-width:1200px;margin:0 auto 50px;" class="reveal">
+            <div class="section-label">Slow down</div>
+            <h2 class="section-title">Choose Your Lakeside Moment</h2>
+            <p class="section-sub">Tap a card and pick the feeling you want from a day by the water.</p>
+        </div>
+        <div class="interactive-grid">
+            <div class="interactive-card reveal reveal-delay-1 active">
+                <h3>Boat Ride</h3>
+                <p>A soft, scenic route across quiet water with mountain views and easy photo stops.</p>
+            </div>
+            <div class="interactive-card reveal reveal-delay-2">
+                <h3>Forest Walk</h3>
+                <p>Green paths, fresh air, and a peaceful pace around the edge of the lake.</p>
+            </div>
+            <div class="interactive-card reveal reveal-delay-3">
+                <h3>Romantic View</h3>
+                <p>A sunset stop, warm drinks, and enough time to enjoy the ripples without rushing.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="lakes-list">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="reveal">
+                <div class="section-label">Where to explore</div>
+                <h2 class="section-title">Famous Irish Lakes</h2>
+                <p class="section-sub">Discover peaceful waters, scenic surroundings, and unforgettable natural beauty across Ireland's most beloved lakeside destinations.</p>
+            </div>
+            <div class="lakes-grid">
+                <div class="lake-card reveal reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1000&q=80" alt="Lough Corrib">
+                    <div class="lake-card-body">
+                        <span class="lake-tag">Connacht</span>
+                        <h3>Lough Corrib</h3>
+                        <p>One of Ireland's largest lakes, famous for its calm beauty, boating, and world-class fishing experiences.</p>
+                    </div>
+                </div>
+                <div class="lake-card reveal reveal-delay-2">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80" alt="Killarney Lakes">
+                    <div class="lake-card-body">
+                        <span class="lake-tag">Kerry</span>
+                        <h3>Killarney Lakes</h3>
+                        <p>Breathtaking scenery, mountain views, and one of the most beautiful nature escapes anywhere in Ireland.</p>
+                    </div>
+                </div>
+                <div class="lake-card reveal reveal-delay-3">
+                    <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=1000&q=80" alt="Lough Leane">
+                    <div class="lake-card-body">
+                        <span class="lake-tag">Kerry</span>
+                        <h3>Lough Leane</h3>
+                        <p>Known for its peaceful waters, surrounding greenery, and deeply relaxing sightseeing opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="packages">
+        <div style="max-width:1200px;margin:0 auto 60px;" class="reveal">
+            <div class="section-label">Plan your visit</div>
+            <h2 class="section-title">Recommended Lake Packages</h2>
+            <p class="section-sub">Peaceful, scenic, and utterly Irish — these packages are made for those who want to slow down and breathe it all in.</p>
+        </div>
+        <div class="packages-grid" style="max-width:1200px;margin:0 auto;">
+            <a href="package-details.html#killarney-escape" class="package-card reveal reveal-delay-1">
+                <div class="package-days">2 Days</div>
+                <h3>Killarney Escape</h3>
+                <p>Enjoy lake views, boat rides, and nearby scenic walks in the heart of Kerry's stunning landscape.</p>
+                <div class="package-arrow">→</div>
+            </a>
+            <a href="package-details.html#nature-lakes" class="package-card reveal reveal-delay-2">
+                <div class="package-days">3 Days</div>
+                <h3>Nature & Lakes Tour</h3>
+                <p>Explore famous Irish lakes with comfortable transport and expertly guided visits included.</p>
+                <div class="package-arrow">→</div>
+            </a>
+            <a href="package-details.html#waterside-package" class="package-card reveal reveal-delay-3">
+                <div class="package-days">5 Days</div>
+                <h3>Relaxing Waterside Package</h3>
+                <p>A full peaceful retreat around Ireland's most beautiful lakes — the ultimate restorative getaway.</p>
+                <div class="package-arrow">→</div>
+            </a>
+        </div>
+        <div class="back-wrap">
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Irish<span>guider</span></div>
+        <p>© 2026 Irishguider. All rights reserved.</p>
+        <p>Explore Ireland Your Way</p>
+    </footer>
+
+</body>
+</html>
